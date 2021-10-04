@@ -493,3 +493,6 @@ function sequence(){
         }, 2000) // 2վրկ․ հետո
     }
 }
+// comments
+// comments
+// comments
