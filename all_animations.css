@@ -84,3 +84,31 @@
 .players_animated{
     animation: wrapper_animation 1s linear forwards;
 }
+
+
+/*  Fire animation */
+
+@keyframes fire_animation {
+    0%{
+        transform: translateY(0px) scale(1);
+        opacity: 1;
+        filter: blur(0px);
+        background: red;
+    }
+    30%{
+        background: orangered;
+    }
+    50%{
+        background: orange;
+    }
+    100%{
+        background: #000;
+        transform: translateY(-500px) translateX(-500px) scale(4);
+        opacity: 0;
+        filter: blur(20px);
+    }
+}
+
+.fired{
+    animation: fire_animation 2s linear forwards;
+}

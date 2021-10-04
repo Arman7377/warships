@@ -307,7 +307,7 @@ body{
     color: white;
 }
 .game{
-    background: orange;
+    background: white;
     height: calc(100vh - 80px);
     width: 100%;
 }
@@ -339,12 +339,12 @@ body{
     border: 1px solid red;
     background: transparent;
 }
-.board1-item:hover{
+/* .board1-item:hover{
     background: red;
 }
 .board2-item:hover{
     background: red;
-}
+} */
 .players {
     margin: 0% auto;
     width: 70%;
@@ -362,4 +362,13 @@ body{
     font-size: 22px;
     color: blue;
     padding: 10px;
+}
+.childElement{
+    width: 100%;
+    height: 100%;
+    background: blue;
+    color: blue
+}
+.childElement:hover{
+    background: red;
 }

@@ -62,9 +62,15 @@ let board2_item = document.querySelectorAll('.board2-item')
 
 board2_item.forEach(element=>{
     element.classList.add("b_items_not_animated")
+    let childElement = document.createElement('div')
+    childElement.classList.add("childElement")
+    element.appendChild(childElement)
 })
 board1_item.forEach(element=>{
     element.classList.add("b_items_not_animated")
+    let childElement = document.createElement('div')
+    childElement.classList.add("childElement")
+    element.appendChild(childElement)
 })
 
 
@@ -420,7 +426,7 @@ let playing = 'pl'
 board1_item.forEach(item=>{
     item.removeEventListener('click', sequence)
     item.style.cursor = 'not-allowed'
-    item.style.opacity = '0.3'
+    item.style.opacity = '0.3'    
 })
 board2_item.forEach(item=>{
     item.addEventListener('click', sequence)
@@ -441,7 +447,11 @@ let shotsCounter2 = 0
 let destroyedShipsCounter1 = 0
 let destroyedShipsCounter2 = 0
 
-function sequence(){
+function sequence(event){
+    if (event.target.className !== 'childElement' ){
+        console.log('asdf')
+        return
+    }
     playing = playing == 'pl' ? 'ai' : 'pl'
     console.log(playing)
 
@@ -449,9 +459,14 @@ function sequence(){
     // ապա հարկավոր է անիմացիային չվերաբերվող ամբողջ կոդը դնել setTimeout-ի մեջ
     // որպեսզի այդքանը կատարվի միայն անիմացիայի ավարտից հետո
     
+    event.target.classList.add('fired')
+    console.log(event.target)
+
     if (playing == 'pl'){
         // անիմացիա
         setTimeout(()=>{
+            event.target.style.display = 'none'
+
             shotsCounter2++
             shots2.innerText = `All Shots Count: ${shotsCounter2}`
 
@@ -474,6 +489,8 @@ function sequence(){
 
         // անիմացիա
         setTimeout(()=>{
+            event.target.style.display = 'none'
+
             shotsCounter1++
             shots1.innerText = `All Shots Count: ${shotsCounter1}`
 
