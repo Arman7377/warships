@@ -493,6 +493,3 @@ function sequence(){
         }, 2000) // 2վրկ․ հետո
     }
 }
-// comments
-// comments
-//asdfasdfasdf0.3
