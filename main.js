@@ -493,5 +493,3 @@ function sequence(){
         }, 2000) // 2վրկ․ հետո
     }
 }
-
-//this is a new line please update a repository to see it...
