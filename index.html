@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warships 3D</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="all_animations.css">
+</head>
+<body>
+    <div class="main">
+        <div class="header">
+            <div class="table1">
+                <p class="shots1">All Shots Count: 0</p>
+                <p class="destroyed1">Destroyed Ships: 0</p>
+            </div>
+            <div class="pauseButton" id='pauseButton'>Pause Game</div>
+            <div class="timerdiv">
+                <p class="timer">00 : 00</p>
+            </div>
+            <div class="restartButton" id="restartButton">Restart Game</div>
+            <div class="table2">
+                <p class="shots2">All Shots Count: 0</p>
+                <p class="destroyed2">Destroyed Ships: 0</p>
+            </div>
+        </div>
+
+        <div class="game">
+            <div class="boards">
+                <div class="board1 not_animated"></div>
+                <div class="board2 not_animated"></div>
+            </div>
+            <div class="players">
+                <div class="player_wrapper">
+                    <div class="player1"></div>
+                </div>
+                <div class="AI_wrapper">
+                    <div class="AI">AI's Turn</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="headerWindow">
+        <div class="boardSetting">
+            <div class="cleanBoard">Clean Board</div>
+            <p>Arrange &nbsp; Your &nbsp; Ships</p>
+            <div class="setBoard"></div>
+            <div class="dock">
+                <p>Direction: Vertical</p>
+                <div class="ship1_dock shipdock">
+                    <div class="ship1 dragItem" data-length="1" draggable="true">
+                        <div></div>
+                    </div>
+                </div>
+                <div class="ship2_dock shipdock">
+                    <div class="ship2 dragItem" data-length="2" draggable="true">
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="ship3_dock shipdock">
+                    <div class="ship3 dragItem" data-length="3" draggable="true">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="ship4_dock shipdock">
+                    <div class="ship4 dragItem" data-length="4" draggable="true">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="headerWindowContent">
+            <div class="inputScreen">Player vs AI</div>
+            <input type="text" class="input" id="inputid" placeholder="Nickname">
+            <div class="diffButton">Complexity : Low</div>
+            <div class="timing">
+                <div class="minusTime">-</div>
+                <div class="time">10min</div>
+                <div class="plusTime">+</div>
+            </div>
+            <div class="startButton">Start Game</div>
+
+            <div class="helpWindow">
+                *Attention Please
+                <ol>
+                    <li>Arrange all the ships</li>
+                    <li>Enter the player name</li>
+                    <li>Choose the complexity</li>
+                    <li>Select the duration of the game</li>
+                    <li>Click the Start button</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

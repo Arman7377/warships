@@ -1,0 +1,365 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'roboto', sans-serif;
+    user-select: none;
+}
+body{
+    overflow: hidden;
+}
+.main{
+    width: 100%;
+    height: 100vh;
+}
+.header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background: #F7F7F9;
+}
+.timerdiv {
+    background-position: center;
+    background: url('images/logo.png');
+    width: 194px;
+    height: 100%;
+}
+.timer {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    color: rgba(0 0 255 / 75%);
+    background: rgba(255 255 255 / 30%);
+    font-weight: bolder;
+}
+.pauseButton {
+    background: #F7F7F9;
+    width: 200px;
+    padding: 10px 0;
+    font-size: 25px;
+    color: blue;
+    font-weight: bolder;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 8px;
+}
+.pauseButton:hover{
+    color: white;
+    background: rgba(0 0 255 / 40%);
+}
+.restartButton {
+    background: #F7F7F9;
+    width: 200px;
+    padding: 10px 0;
+    font-size: 25px;
+    color: blue;
+    font-weight: bolder;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 8px;
+}
+.restartButton:hover{
+    color: white;
+    background: rgba(0 0 255 / 40%);
+}
+.table1 {
+    margin-left: 100px;
+}
+.table2{
+    margin-right: 100px;
+}
+.table2, .table1 {
+    background: rgba(0 0 255 / 10%);
+    padding-left: 5px;
+    width: 160px;
+    height: 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 2px solid blue;
+    border-radius: 8px;
+}
+.shots1, .shots2, .destroyed1, .destroyed2 {
+    color: blue;
+}
+.timing {
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.minusTime, .plusTime {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    background: rgba(0 0 255 / 80% );
+
+}
+.time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    padding: 8px 15px;
+    width: 150px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    background: rgba(0 0 255 / 80% );
+}
+
+
+
+.headerWindow{
+    position: absolute;
+    top: 0;left: 0;bottom: 0;right: 0;
+    width: 100%;
+    height: 100vh;
+    background: url('images/logo.png');
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.boardSetting p {
+    position: absolute;
+    transform: translateY(0) translateX(-240px);
+    color: blue;
+    font-size: 25px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.rotate{
+    transform: rotate(90deg)
+}
+.setBoard {
+    margin: 0 auto;
+    width: 322px;
+    display: flex;
+    flex-wrap: wrap;
+    background: blue;
+    border: 1px solid red;
+}
+.boardSetting, .headerWindowContent{
+    border: 2px solid blue;
+    background: rgba(255 255 255 / 70%);
+    border-radius: 10px;
+    padding: 50px;
+    width: 80vh;
+    height: 80vh;
+}
+.helpWindow{
+    font-size: 25px;
+    border: 2px solid blue;
+    height: auto;
+    border-radius: 8px;
+    padding: 5px;
+    color: blue;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.helpWindow li{
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bolder;
+    line-height: 20px;
+}
+.boardSetting{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.cleanBoard{
+    margin-bottom: 10px;
+    padding: 5px 15px;
+    background-color: rgba(0 0 255 / 80%);
+    color: white;
+    font-size: 22px;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+.dock{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 6px auto;
+    width: 44vh;
+    height: 110px;
+    border: 2px solid blue;
+    background: rgba(255 255 255 / 70%);
+    border-radius: 10px;
+}
+.dock p{
+    transform: translateY(70px);
+    line-height: 25px;
+}
+.ship1_dock,
+.ship2_dock,
+.ship3_dock,
+.ship4_dock{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    margin: 5px;
+    border: 2px solid blue;
+    border-radius: 3px;
+}
+.ship1_dock{
+    
+    width: 40px;
+    height: 40px;
+    
+}
+.ship2_dock{
+    width: 70px;
+    height: 40px;
+}
+.ship3_dock{
+    width: 100px;
+    height: 40px;
+}
+.ship4_dock{
+    width: 130px;
+    height: 40px;
+}
+
+.ship1,
+.ship2,
+.ship3,
+.ship4{
+    display: flex;
+}
+.ship1 div,
+.ship2 div,
+.ship3 div,
+.ship4 div{
+    width: 30px;
+    height: 30px;
+    border: 2px solid blue;
+    border-radius: 3px;
+    background: rgba(0 0 255 / 50%);
+}
+
+.inputScreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 70px;
+    border: 1px solid;
+    color: blue;
+    font-size: 30px;
+}
+.diffButton {
+    color: white;
+    font-size: 18px;
+    margin: 10px 0;
+    text-align: center;
+    padding: 10px 25px;
+    background: rgba( 0 0 255 / 80%);
+    cursor: pointer;
+}
+.input {
+    margin:  10px 0;
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-bottom: 2px solid blue;
+    color: blue;
+    font-size: 18px;
+    outline: none;
+    background: transparent;
+
+}
+.input::placeholder{
+    font-weight: bold;
+    font-size: 18px;
+    color: blue;
+}
+.startButton{
+    margin: 10px auto;
+    width: 150px;
+    padding: 10px 25px;
+    background: rgba( 0 0 255 / 80%);
+    cursor: pointer;
+    font-size: 18px;
+    color: white;
+}
+.game{
+    background: orange;
+    height: calc(100vh - 80px);
+    width: 100%;
+}
+.boards{
+    margin: 0% auto;
+    width: 70%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    perspective: 500px;
+}
+.board1, .board2{
+    width: 320px;
+    display: flex;
+    flex-wrap: wrap;
+    background: blue;
+}
+.board1-item, .board2-item{
+    width: 32px;
+    height: 32px;
+    border: 1px solid red;
+    background: transparent;
+}
+.playerBoard{
+    width: 32px;
+    height: 32px;
+    border: 1px solid red;
+    background: transparent;
+}
+.board1-item:hover{
+    background: red;
+}
+.board2-item:hover{
+    background: red;
+}
+.players {
+    margin: 0% auto;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+}
+.player_wrapper, .AI_wrapper{
+    width: 320px;
+}
+.player1, .AI {
+    text-align: center;
+    border: 2px solid blue;
+    border-radius: 8px;
+    background: rgba(255 225 255 / 50%);
+    font-size: 22px;
+    color: blue;
+    padding: 10px;
+}
