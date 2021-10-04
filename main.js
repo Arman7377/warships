@@ -2,6 +2,17 @@ let board1 = document.querySelector('.board1')
 let board2 = document.querySelector('.board2')
 let boards = document.querySelector('.boards')
 
+// board1.addEventListener('mouseover', ()=>{
+//     if (board1.className == 'board1 animated'){
+//         board1.style.transform = 'scale(1.6)'
+//     }
+// })
+// board2.addEventListener('mouseover', ()=>{
+//     board2.style.transform = 'scale(1.6)'
+// })
+
+// console.log(board1.className)
+
 let input = document.querySelector('#inputid')
 let setBoard = document.querySelector('.setBoard')
 
@@ -390,7 +401,7 @@ function generate_dock_circuit(index, length){}
 main()
 
 restartButton.onclick = ()=>{
-    window.location.reload()
+    window.location.reload() // reloading page
 }
 
 let heading = document.querySelector('.boardSetting p')
@@ -406,21 +417,79 @@ let AI = document.querySelector('.AI')
 
 let playing = 'pl'
 
-dropZones.forEach(dropZone=>{
-    dropZone.addEventListener('click', sequence)
+board1_item.forEach(item=>{
+    item.removeEventListener('click', sequence)
+    item.style.cursor = 'not-allowed'
+    item.style.opacity = '0.3'
 })
+board2_item.forEach(item=>{
+    item.addEventListener('click', sequence)
+    item.style.cursor = 'default'
+    item.style.opacity = '1'
+}) 
+
+player1.style.opacity = '1' 
+AI.style.opacity = '0.3'
+
+let shots1 = document.querySelector('.shots1')
+let shots2 = document.querySelector('.shots2')
+let destroyed1 = document.querySelector('.destroyed1')
+let destroyed2 = document.querySelector('.destroyed2')
+
+let shotsCounter1 = 0
+let shotsCounter2 = 0
+let destroyedShipsCounter1 = 0
+let destroyedShipsCounter2 = 0
 
 function sequence(){
     playing = playing == 'pl' ? 'ai' : 'pl'
     console.log(playing)
 
+    // որպեսզի այս ֆունկցիայի ներսում աշխատեցվի նավերի կրակելու անիմացիան 
+    // ապա հարկավոր է անիմացիային չվերաբերվող ամբողջ կոդը դնել setTimeout-ի մեջ
+    // որպեսզի այդքանը կատարվի միայն անիմացիայի ավարտից հետո
+    
     if (playing == 'pl'){
-        board1.classList.toggle('animated')
-        board1.classList.toggle('not_animated')
-        board1_item.forEach(item=>{
-            item.classList.toggle('b_items_not_animated')
-            item.classList.toggle('b_items_animated')
-        })
-        console.log('afasd')
+        // անիմացիա
+        setTimeout(()=>{
+            shotsCounter2++
+            shots2.innerText = `All Shots Count: ${shotsCounter2}`
+
+            board1_item.forEach(item=>{
+                item.removeEventListener('click', sequence)
+                item.style.cursor = 'not-allowed'
+                item.style.opacity = '0.3'
+            })
+            board2_item.forEach(item=>{
+                item.addEventListener('click', sequence)
+                item.style.cursor = 'default'
+                item.style.opacity = '1'
+            }) 
+            
+            player1.style.opacity = '1' 
+            AI.style.opacity = '0.3'
+        }, 2000) // 2վրկ․ հետո
+    }
+    else { // playing == 'ai'
+
+        // անիմացիա
+        setTimeout(()=>{
+            shotsCounter1++
+            shots1.innerText = `All Shots Count: ${shotsCounter1}`
+
+            board1_item.forEach(item=>{
+                item.addEventListener('click', sequence)
+                item.style.cursor = 'default'
+                item.style.opacity = '1'
+            })
+            board2_item.forEach(item=>{
+                item.removeEventListener('click', sequence)
+                item.style.cursor = 'not-allowed'
+                item.style.opacity = '0.3'
+            })
+            
+            AI.style.opacity = '1'
+            player1.style.opacity = '0.3'
+        }, 2000) // 2վրկ․ հետո
     }
 }
