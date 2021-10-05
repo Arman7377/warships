@@ -34,9 +34,11 @@ function generateBoards(){
     for(let i=0; i<100; i++){
         let el1 = document.createElement('div')
         el1.classList.add('board1-item')
+        el1.setAttribute('data-item', i+1)
     
         let el2 = document.createElement('div')
         el2.classList.add('board2-item')
+        el2.setAttribute('data-item', i+1)
     
         board1.appendChild(el1)
         board2.appendChild(el2)
@@ -44,13 +46,13 @@ function generateBoards(){
 }
 generateBoards();
 
-let ships = []
+let playerShips = []
 
 function checkShips(){
     dropZones.forEach(dropZone=>{
         if (dropZone.style.backgroundColor == 'white'){
-            if (!(ships.includes(+dropZone.getAttribute('data-item')))){
-                ships.push(+dropZone.getAttribute('data-item'))
+            if (!(playerShips.includes(+dropZone.getAttribute('data-item')))){
+                playerShips.push(+dropZone.getAttribute('data-item'))
             }
         }
     })
@@ -125,7 +127,7 @@ function main(){
     })
 
     startButton.onclick = ()=>{
-        console.log('Ships Array' + ships)
+        console.log('Ships Array: ' + playerShips)
         document.querySelector('.headerWindow').classList.add('close')
         document.querySelector('.headerWindow').style.width = '100%'
         document.querySelector('.headerWindow').style.height = '100vh'
@@ -245,7 +247,7 @@ dropZones.forEach(dropZone =>{
 
 let cleanBoardBtn = document.querySelector('.cleanBoard')
 cleanBoardBtn.addEventListener('click', ()=>{
-    ships.length = 0
+    playerShips.length = 0
     len1Counter = 0
     len2Counter = 0
     len3Counter = 0
@@ -449,21 +451,31 @@ let destroyedShipsCounter2 = 0
 
 function sequence(event){
     if (event.target.className !== 'childElement' ){
-        console.log('asdf')
         return
     }
+    
     playing = playing == 'pl' ? 'ai' : 'pl'
-    console.log(playing)
-
-    // որպեսզի այս ֆունկցիայի ներսում աշխատեցվի նավերի կրակելու անիմացիան 
-    // ապա հարկավոր է անիմացիային չվերաբերվող ամբողջ կոդը դնել setTimeout-ի մեջ
-    // որպեսզի այդքանը կատարվի միայն անիմացիայի ավարտից հետո
     
     event.target.classList.add('fired')
-    console.log(event.target)
-
+    
+    // պետք է լինի պայման ըստ որի եթե կրակոցը եղել է թիրախին,
+    // վանդակում ավելացվի x կարմիր գույնի, հակառակ դեպքում՝
+    // վանդակում կլինի կանաչ շրջանակ։
+    //
+    // նավերի համարներով զանգվածները պետք է լինեն երկուսը՝
+    // player-ի և AI-ի համար։ Համապատասխանաբար յուրաքանչյուրի
+    // համար պետք է ստուգվի array.includes( value )- ի միջոցով 
+    // անմիջապես տվյալ խաղացողի հարվաածից առաջ։
+    
     if (playing == 'pl'){
-        // անիմացիա
+        // հարված թիրախին 
+        if (playerShips.includes(+event.target.parentElement.getAttribute('data-item'))){
+            event.target.parentElement.innerHTML = `<i class='fa fa-times'></i>` 
+        } 
+        else { // վրիպման դեպքում
+            event.target.parentElement.innerHTML = `<i class='fa fa-dot-circle'></i>`
+        }
+
         setTimeout(()=>{
             event.target.style.display = 'none'
 
@@ -487,8 +499,14 @@ function sequence(event){
     }
     else { // playing == 'ai'
 
-        // անիմացիա
-        setTimeout(()=>{
+        // հարված թիրախին 
+        if (playerShips.includes(+event.target.parentElement.getAttribute('data-item'))){
+            event.target.parentElement.innerHTML = `<i class='fa fa-times'></i>` 
+        } 
+        else { // վրիպման դեպքում
+            event.target.parentElement.innerHTML = `<i class='fa fa-dot-circle'></i>`
+        }
+        setTimeout(()=>{ 
             event.target.style.display = 'none'
 
             shotsCounter1++

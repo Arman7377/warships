@@ -34,7 +34,7 @@
         height: 32px;
     }
 }
-.animated{
+/* .animated{
     animation: boards3D_start 1s linear forwards;
     animation-delay: 2s;
 }
@@ -49,7 +49,7 @@
 .b_items_not_animated{
     animation: b_items_end 1s linear forwards;
     animation-delay: 2s;
-}
+} */
 
 /* main window closiing animation */
 
