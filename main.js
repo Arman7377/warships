@@ -2,16 +2,6 @@ let board1 = document.querySelector('.board1')
 let board2 = document.querySelector('.board2')
 let boards = document.querySelector('.boards')
 
-// board1.addEventListener('mouseover', ()=>{
-//     if (board1.className == 'board1 animated'){
-//         board1.style.transform = 'scale(1.6)'
-//     }
-// })
-// board2.addEventListener('mouseover', ()=>{
-//     board2.style.transform = 'scale(1.6)'
-// })
-
-// console.log(board1.className)
 
 let input = document.querySelector('#inputid')
 let setBoard = document.querySelector('.setBoard')
@@ -21,8 +11,8 @@ function setPlayerBoard(){
         let el1 = document.createElement('div')
         el1.classList.add('playerBoard')
         el1.classList.add('dropZone')
-            // el1.innerHTML = i+1
-            // el1.style.color = 'white'
+            el1.innerHTML = i+1
+            el1.style.color = 'white'
         el1.setAttribute('data-item', i+1)
         setBoard.appendChild(el1)
 
@@ -232,14 +222,11 @@ let rotateFlag = false
 
 dragItems.forEach(dragItem =>{
     dragItem.addEventListener('dragstart', handlerDragStart)
-    dragItem.addEventListener('dragend', handlerDragEnd)
-    dragItem.addEventListener('drag', handlerDrag)
     dragItem.addEventListener('dblclick', rotateShip)
 })
 
 
 dropZones.forEach(dropZone =>{
-    dropZone.addEventListener('dragenter', handlerDragEnter)
     dropZone.addEventListener('dragleave', handlerDragLeave)
     dropZone.addEventListener('dragover', handlerDragOver)
     dropZone.addEventListener('drop', handlerDrop)
@@ -274,14 +261,7 @@ function handlerDragStart(){
 
 }
 
-function handlerDragEnd(){}
-
-function handlerDrag(){}
-
 //Drop Functions 
-
-function handlerDragEnter(event){}
-
 function handlerDragLeave(event){
     event.preventDefault()
     dropZones.forEach(element=>{
@@ -294,10 +274,10 @@ function handlerDragOver(event){
     startIndex = this.getAttribute('data-item')
     if (rotateFlag){
         generate_Hdock(startIndex, length)
-        // generate_Hdock_circuit(startIndex, length)
+        generate_Hship_circuit(startIndex, length)
     } else {
-        generate_dock(startIndex, length)
-        // generate_dock_circuit(startIndex, length)
+        generate_Vdock(startIndex, length)
+        generate_Vship_circuit(startIndex, length)
     }
 }
 
@@ -307,7 +287,7 @@ function handlerDrop(event){
     if (rotateFlag){
         generate_Hship(startIndex, length)
     } else {
-        generate_ship(startIndex, length)
+        generate_Vship(startIndex, length)
     }
     dropZones.forEach(element=>{
         element.style.borderColor = 'red'
@@ -343,7 +323,38 @@ function rotateShip(){
     }
 }
 
-function generate_dock(index, length){
+// այս ֆունկցիան նավակը դնում է համապատասխան տեղում (Ուղղահայաց)։
+function generate_Vship(index, length){ // in drop event
+    index = +index-1
+    length = +length
+    
+    if (index + (10*(length-1)) <= 100){
+        let n = 0
+        while(n < length){
+            dropZones[index].style.backgroundColor = 'white'
+            index = index + 10
+            n++
+        }
+    }
+}
+
+// այս ֆունկցիան նավակը դնում է համապատասխան տեղում (Հորիզոնական)։
+function generate_Hship(index, length){ // in drop event
+    index = +index-1
+    length = +length
+    
+    if (index%10 + length <= 10){
+        let n = 0
+        while(n < length){
+            dropZones[index].style.backgroundColor = 'white'
+            index = index + 1
+            n++
+        }
+    }
+}
+
+// այս ֆունկցիան նկարում է նավակի տեղը դաշտի վրա (Ուղղահայաց)։
+function generate_Vdock(index, length){
     index = +index-1
     length = +length
 
@@ -357,35 +368,8 @@ function generate_dock(index, length){
     }
 }
 
-function generate_ship(index, length){
-    index = +index-1
-    length = +length
-
-    if (index + (10*(length-1)) <= 100){
-        let n = 0
-        while(n < length){
-            dropZones[index].style.backgroundColor = 'white'
-            index = index + 10
-            n++
-        }
-    }
-}
-
-function generate_Hship(index, length){
-    index = +index-1
-    length = +length
-
-    if (index%10 + length <= 10){
-        let n = 0
-        while(n < length){
-            dropZones[index].style.backgroundColor = 'white'
-            index = index + 1
-            n++
-        }
-    }
-}
-
-function generate_Hdock(index, length){
+// այս ֆունկցիան նկարում է նավակի տեղը դաշտի վրա (Հորիզոնական)։
+function generate_Hdock(index, length){ // in dragover event
     index = +index-1
     length = +length
 
@@ -399,11 +383,33 @@ function generate_Hdock(index, length){
     }
 }
 
-function generate_Hdock_circuit(index, length){}
-function generate_Hship_circuit(index, length){}
+// այս ֆունկցիան նշում է նավակի հարևան դաշտը (Ուղղահայաց)։
+function generate_Vship_circuit(index, length){
+    index = +index-12
+    length = +length
 
-function generate_ship_circuit(index, length){}
-function generate_dock_circuit(index, length){}
+    for (let i=0; i<length+2; i++){
+        for(let j=0; j<3; j++){
+            dropZones[index].style.border = '1px solid white'
+            index++
+        }
+        index += 7
+    }
+}
+
+// այս ֆունկցիան նշում է նավակի հարևան դաշտը (Հորիզոնական)։
+function generate_Hship_circuit(index, length){
+    index = +index-12
+    length = +length
+
+    for (j=0; j<3; j++){
+        for (i=0; i<length+2; i++){
+            dropZones[index].style.border = '1px solid white'
+            index++
+        }
+        index += 5
+    }
+}
 
 
 main()
