@@ -307,7 +307,7 @@ body{
     color: white;
 }
 .game{
-    background: white;
+    background: #F7F7F9;
     height: calc(100vh - 80px);
     width: 100%;
 }

@@ -281,6 +281,10 @@ function handlerDragOver(event){
     }
 }
 
+// եթե drop-ը աշխատում է dropZones-ից դուրս, էլեմենտը կորում է,
+// Հարկավոր է dock-ում նավակի քանակը պակասեցնելուց առաջ գլոբալ 
+// փոփոխականի միջոցով ստուգել թե արդյոք նավակը drop է արվել dragZones-ի վրա։
+
 function handlerDrop(event){
     event.preventDefault()
     startIndex = this.getAttribute('data-item')
